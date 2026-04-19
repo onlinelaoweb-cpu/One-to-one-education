@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>One To One Education | Expert Tutoring — Gaur City 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink:      #0f1623;
+      --deep:     #162040;
+      --gold:     #c9933a;
+      --gold-lt:  #e8b96a;
+      --cream:    #faf6ee;
+      --mist:     #f0ece4;
+      --text:     #2e3648;
+      --subtle:   #8a93a8;
+      --white:    #ffffff;
+      --shadow:   0 20px 60px rgba(15,22,35,.12);
+      --r:        14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ─────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 5%;
+      background: rgba(250,246,238,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,147,58,.18);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(15,22,35,.08); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 700;
+      color: var(--deep);
+      letter-spacing: -.01em; line-height: 1.1;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--text);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--deep); color: var(--white);
+      padding: 10px 22px; border-radius: 8px;
+      font-size: .875rem; font-weight: 500;
+      letter-spacing: .04em; text-transform: uppercase;
+      text-decoration: none; transition: background .25s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+    /* ── HERO ──────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(145deg, var(--deep) 0%, #1c2d5a 55%, #0f1623 100%);
+      display: flex; align-items: center;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    /* Geometric backdrop */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,147,58,.18) 0%, transparent 65%),
+                  radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201,147,58,.10) 0%, transparent 60%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,147,58,.18); border: 1px solid rgba(201,147,58,.35);
+      color: var(--gold-lt); padding: 7px 16px; border-radius: 30px;
+      font-size: .8rem; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 24px;
+      animation: fadeUp .7s ease both;
+    }
+    .hero-badge::before { content: '★'; font-size: .7rem; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 700; line-height: 1.08;
+      color: var(--white); margin-bottom: 12px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold-lt);
+    }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.7;
+      color: rgba(255,255,255,.68);
+      margin-bottom: 40px; max-width: 480px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--ink);
+      padding: 14px 32px; border-radius: 10px;
+      font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: all .25s;
+      box-shadow: 0 8px 30px rgba(201,147,58,.4);
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,147,58,.5); }
+    .btn-ghost {
+      color: var(--white); padding: 14px 28px;
+      border: 1.5px solid rgba(255,255,255,.3); border-radius: 10px;
+      font-weight: 500; font-size: .95rem;
+      text-decoration: none; transition: all .25s;
+    }
+    .btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+    .hero-right {
+      display: flex; flex-direction: column; gap: 16px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .stat-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r); padding: 24px 20px;
+      backdrop-filter: blur(8px); transition: transform .3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--gold-lt); line-height: 1;
+    }
+    .stat-label {
+      font-size: .8rem; color: rgba(255,255,255,.55);
+      margin-top: 6px; letter-spacing: .04em;
+    }
+    .feature-pill {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,147,58,.25);
+      border-radius: 40px; padding: 14px 22px;
+      color: rgba(255,255,255,.8); font-size: .9rem;
+    }
+    .feature-pill .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* Floating shapes */
+    .shape {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,147,58,.12), transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape-1 { width: 340px; height: 340px; top: -80px; right: -80px; animation-delay: 0s; }
+    .shape-2 { width: 200px; height: 200px; bottom: 60px; left: 5%; animation-delay: 2s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── SECTION SHELL ─────────────────────────────── */
+    section { padding: 96px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-weight: 700; color: var(--deep); line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .section-desc {
+      font-size: 1rem; line-height: 1.75;
+      color: var(--subtle); max-width: 560px;
+    }
+
+    /* ── WHY US ────────────────────────────────────── */
+    #why { background: var(--white); }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .why-visual {
+      position: relative; border-radius: 20px; overflow: hidden;
+    }
+    .why-visual-box {
+      background: linear-gradient(135deg, var(--deep) 0%, #243760 100%);
+      border-radius: 20px; padding: 48px 40px;
+      position: relative; overflow: hidden;
+    }
+    .why-visual-box::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 110% 110%, rgba(201,147,58,.22), transparent 60%);
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; line-height: .7;
+      color: rgba(201,147,58,.2);
+      position: absolute; top: 20px; left: 24px;
+    }
+    .why-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem; font-style: italic;
+      color: var(--white); line-height: 1.5;
+      position: relative; z-index: 1; padding-top: 40px;
+    }
+    .why-cite {
+      margin-top: 20px; font-size: .85rem;
+      color: var(--gold-lt); font-weight: 500;
+      position: relative; z-index: 1;
+    }
+    .features-list { display: flex; flex-direction: column; gap: 24px; }
+    .feature-item {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 20px; border-radius: 12px;
+      transition: background .25s;
+    }
+    .feature-item:hover { background: var(--mist); }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--deep), #243760);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .feature-item h3 {
+      font-weight: 600; margin-bottom: 4px; color: var(--deep);
+    }
+    .feature-item p { font-size: .9rem; color: var(--subtle); line-height: 1.6; }
+
+    /* ── SUBJECTS ──────────────────────────────────── */
+    #subjects { background: var(--cream); }
+    .subjects-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 48px;
+    }
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .subject-card {
+      background: var(--white); border-radius: var(--r);
+      padding: 28px 24px;
+      border: 1.5px solid transparent;
+      transition: all .3s;
+      cursor: default;
+    }
+    .subject-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .subject-icon { font-size: 2rem; margin-bottom: 14px; }
+    .subject-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--deep); margin-bottom: 8px;
+    }
+    .subject-card p { font-size: .85rem; color: var(--subtle); line-height: 1.6; }
+    .subject-tag {
+      display: inline-block; margin-top: 14px;
+      padding: 4px 12px; border-radius: 20px;
+      background: var(--mist); font-size: .75rem;
+      color: var(--gold); font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    /* ── HOW IT WORKS ──────────────────────────────── */
+    #process { background: var(--deep); padding: 96px 5%; }
+    #process .section-title { color: var(--white); }
+    #process .section-desc { color: rgba(255,255,255,.5); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 56px; position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 32px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,147,58,.4), transparent);
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 20px;
+    }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--ink);
+      margin-bottom: 24px; position: relative; z-index: 1;
+      box-shadow: 0 8px 24px rgba(201,147,58,.35);
+    }
+    .step h3 { color: var(--white); font-weight: 600; margin-bottom: 10px; }
+    .step p { font-size: .875rem; color: rgba(255,255,255,.5); line-height: 1.65; }
+
+    /* ── TESTIMONIALS ──────────────────────────────── */
+    #testimonials { background: var(--mist); }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .testi-card {
+      background: var(--white); border-radius: var(--r);
+      padding: 32px 28px;
+      border: 1px solid rgba(201,147,58,.1);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-text {
+      font-size: .95rem; line-height: 1.75;
+      color: var(--text); margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--deep), #3455a0);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-weight: 700; font-size: .9rem;
+    }
+    .author-name { font-weight: 600; font-size: .9rem; color: var(--deep); }
+    .author-class { font-size: .8rem; color: var(--subtle); }
+
+    /* ── CONTACT ───────────────────────────────────── */
+    #contact { background: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 64px; align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--deep); margin-bottom: 16px;
+    }
+    .contact-info p {
+      color: var(--subtle); line-height: 1.7; margin-bottom: 36px;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .ci-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--mist);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .ci-label { font-size: .8rem; color: var(--subtle); text-transform: uppercase; letter-spacing: .06em; }
+    .ci-value { font-weight: 500; color: var(--deep); margin-top: 2px; }
+    .contact-form {
+      background: var(--mist); border-radius: 20px;
+      padding: 40px 36px;
+    }
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--deep); margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-size: .8rem; font-weight: 600;
+      letter-spacing: .05em; text-transform: uppercase;
+      color: var(--subtle); margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 13px 16px;
+      background: var(--white);
+      border: 1.5px solid rgba(201,147,58,.2);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-size: .95rem; color: var(--text);
+      outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit {
+      width: 100%;
+      background: var(--deep); color: var(--white);
+      padding: 15px; border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      font-weight: 600; cursor: pointer;
+      transition: all .25s; margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold); color: var(--ink); transform: translateY(-2px); }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,.5);
+      padding: 64px 5% 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-about { font-size: .875rem; line-height: 1.7; }
+    .footer-col h4 {
+      color: var(--white); font-size: .85rem;
+      font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.45); text-decoration: none;
+      font-size: .875rem; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold-lt); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .8rem;
+    }
+    .footer-bottom a { color: var(--gold-lt); text-decoration: none; }
+
+    /* ── FLOATING WA ───────────────────────────────── */
+    .wa-btn {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem; cursor: pointer; z-index: 200;
+      box-shadow: 0 8px 30px rgba(37,211,102,.45);
+      text-decoration: none;
+      animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow: 0 8px 30px rgba(37,211,102,.45); }
+      50%{ box-shadow: 0 8px 50px rgba(37,211,102,.75); }
+    }
+
+    /* ── ANIMATIONS ON SCROLL ──────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
+      .subjects-grid { grid-template-columns: repeat(2,1fr); }
+      .process-steps { grid-template-columns: repeat(2,1fr); }
+      .process-steps::before { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .stat-cards { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 540px) {
+      .subjects-grid, .stat-cards { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .subjects-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">One<span>To</span>One<br><span style="font-size:.85rem;font-weight:400;color:var(--subtle);font-family:'DM Sans',sans-serif;letter-spacing:.04em">Education</span></div>
+  <ul class="nav-links">
+    <li><a href="#why">About</a></li>
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Free Session</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">Trusted by 200+ Gaur City Families</div>
+      <h1 class="hero-title">Where Every Child<br>Gets <em>Undivided</em><br>Attention</h1>
+      <p class="hero-sub">Premium one-on-one tutoring for Classes I–XII at your doorstep in Gaur City 2. Expert faculty. Real results. Personal care.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Book Free Demo Class</a>
+        <a href="tel:+919999000000" class="btn-ghost">📞 Call Us Now</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Students Taught</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">95%</div>
+          <div class="stat-label">Score Improvement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1:1</div>
+          <div class="stat-label">Dedicated Tutoring</div>
+        </div>
+      </div>
+      <div class="feature-pill">
+        <span class="dot"></span>
+        CBSE · ICSE · State Board — All Covered
+      </div>
+      <div class="feature-pill">
+        <span class="dot"></span>
+        Home Visits + Center Sessions Available
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner why-grid reveal">
+    <div class="why-visual">
+      <div class="why-visual-box">
+        <div class="quote-mark">"</div>
+        <div class="why-quote">We don't teach to the class. We teach to the child. Every session is crafted around your child's unique pace, gaps, and goals.</div>
+        <div class="why-cite">— One To One Education, Gaur City 2</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">More Than Tutoring —<br>A Learning Partnership</h2>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div>
+            <h3>Personalised Learning Plans</h3>
+            <p>Every student begins with a diagnostic session. We map strengths and gaps to create a custom roadmap toward their goals.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏠</div>
+          <div>
+            <h3>Home Visit or Centre — You Choose</h3>
+            <p>Flexible scheduling at your home in Gaur City 2 or at our centre in Tower F, 14th Avenue. No commute stress.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div>
+            <h3>Regular Progress Reporting</h3>
+            <p>Parents get weekly updates on test scores, homework completion, and concept mastery — full transparency always.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🧑‍🎓</div>
+          <div>
+            <h3>Qualified, Background-Checked Tutors</h3>
+            <p>All tutors hold degrees in their subjects and have been carefully vetted for teaching ability and conduct.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+  <div class="section-inner">
+    <div class="subjects-header reveal">
+      <div>
+        <div class="section-label">What We Teach</div>
+        <h2 class="section-title">Subjects & Programs</h2>
+      </div>
+      <p class="section-desc" style="max-width:340px">Classes I to XII across all major boards and competitive exam prep.</p>
+    </div>
+    <div class="subjects-grid reveal">
+      <div class="subject-card">
+        <div class="subject-icon">🔢</div>
+        <h3>Mathematics</h3>
+        <p>From basic arithmetic to JEE-level calculus. Concept clarity guaranteed.</p>
+        <span class="subject-tag">All Classes</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🔬</div>
+        <h3>Science</h3>
+        <p>Physics, Chemistry & Biology. NCERT mastery + hands-on problem solving.</p>
+        <span class="subject-tag">VI – XII</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🌍</div>
+        <h3>Social Studies</h3>
+        <p>History, Geography, Civics — taught with maps, stories, and mnemonics.</p>
+        <span class="subject-tag">I – X</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">📖</div>
+        <h3>English Language</h3>
+        <p>Grammar, comprehension, writing skills, and spoken confidence building.</p>
+        <span class="subject-tag">All Classes</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">💻</div>
+        <h3>Computer Science</h3>
+        <p>Python, C++, and IT theory for Classes IX–XII and board preparation.</p>
+        <span class="subject-tag">IX – XII</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🧮</div>
+        <h3>Accountancy & Economics</h3>
+        <p>Commerce stream mastery with real-world problem practice and exam strategy.</p>
+        <span class="subject-tag">XI – XII</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🏆</div>
+        <h3>Competitive Exams</h3>
+        <p>JEE Mains, NEET, NDA, and Olympiad foundation prep.</p>
+        <span class="subject-tag">Exam Prep</span>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🌱</div>
+        <h3>Foundation Batch</h3>
+        <p>Strong fundamentals for Classes I–V. Reading, writing, mental maths.</p>
+        <span class="subject-tag">I – V</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="color:var(--gold-lt)">Getting Started</div>
+      <h2 class="section-title" style="color:var(--white);text-align:center">How It Works</h2>
+      <p class="section-desc" style="color:rgba(255,255,255,.5);margin:0 auto;text-align:center">Simple, stress-free onboarding in 4 easy steps</p>
+    </div>
+    <div class="process-steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Free Consultation</h3>
+        <p>Call or WhatsApp us. We'll understand your child's needs, board, and goals.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Diagnostic Test</h3>
+        <p>A short subject assessment helps us understand exactly where your child stands.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Custom Plan</h3>
+        <p>We assign the best-fit tutor and create a personalised weekly schedule.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Watch Them Grow</h3>
+        <p>Regular sessions, weekly reports, and continuous improvement — tracked together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Parent Reviews</div>
+      <h2 class="section-title" style="text-align:center">What Gaur City Families Say</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"My son went from 55% to 88% in Maths in just one term. The tutor's patience and personalised approach made all the difference. Best investment for my child."</p>
+        <div class="testi-author">
+          <div class="author-avatar">PS</div>
+          <div>
+            <div class="author-name">Priya Sharma</div>
+            <div class="author-class">Parent of Class X Student</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Very convenient that they come home. My daughter is much more confident in Science now. The weekly progress updates are very helpful to track improvement."</p>
+        <div class="testi-author">
+          <div class="author-avatar">RG</div>
+          <div>
+            <div class="author-name">Ramesh Gupta</div>
+            <div class="author-class">Parent of Class VIII Student</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Excellent tutor for English and Social Studies. My child used to dread exams — now looks forward to them. Highly recommended for all Gaur City families!"</p>
+        <div class="testi-author">
+          <div class="author-avatar">NK</div>
+          <div>
+            <div class="author-name">Neha Khanna</div>
+            <div class="author-class">Parent of Class VI Student</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner contact-grid reveal">
+    <div class="contact-info">
+      <div class="section-label">Get In Touch</div>
+      <h2>Start Your Child's<br>Journey Today</h2>
+      <p>Book a free demo session with no obligation. We're based in Tower F, 14th Avenue, Gaur City 2 — just minutes away for most residents.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">Address</div>
+            <div class="ci-value">Shop 8045, Tower-F, 14th Avenue<br>Gaur City 2, Greater Noida – 201009</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Phone</div>
+            <div class="ci-value">+91 99990 00000</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">⏰</div>
+          <div>
+            <div class="ci-label">Timings</div>
+            <div class="ci-value">Mon – Sat: 7:00 AM – 8:00 PM<br>Sunday: 9:00 AM – 2:00 PM</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">🏫</div>
+          <div>
+            <div class="ci-label">Boards</div>
+            <div class="ci-value">CBSE · ICSE · UP Board · State Board</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Book Your Free Demo</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Parent Name</label>
+          <input type="text" placeholder="Your full name"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 98765 43210"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Child's Class</label>
+          <select>
+            <option value="">Select Class</option>
+            <option>Class I – III</option>
+            <option>Class IV – V</option>
+            <option>Class VI – VIII</option>
+            <option>Class IX – X</option>
+            <option>Class XI – XII</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Subject Needed</label>
+          <select>
+            <option value="">Select Subject</option>
+            <option>Mathematics</option>
+            <option>Science</option>
+            <option>English</option>
+            <option>Social Studies</option>
+            <option>Computer Science</option>
+            <option>Accountancy / Economics</option>
+            <option>Multiple Subjects</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Preferred Mode</label>
+        <select>
+          <option>Home Visit (Gaur City 2)</option>
+          <option>At Our Centre — Tower F</option>
+          <option>Online Sessions</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Any Special Requirement</label>
+        <textarea rows="3" placeholder="E.g. weak in fractions, upcoming board exams, etc."></textarea>
+      </div>
+      <button class="form-submit">Request Free Demo Session →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">One<span>To</span>One Education</div>
+        <p class="footer-about">Premium private tutoring for students of Classes I–XII in Gaur City 2, Greater Noida. Every child deserves individual attention and a chance to shine.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Subjects</h4>
+        <ul>
+          <li><a href="#">Mathematics</a></li>
+          <li><a href="#">Science</a></li>
+          <li><a href="#">English</a></li>
+          <li><a href="#">Social Studies</a></li>
+          <li><a href="#">Commerce</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#">Foundation Batch</a></li>
+          <li><a href="#">Board Exam Prep</a></li>
+          <li><a href="#">JEE / NEET Prep</a></li>
+          <li><a href="#">Olympiad Training</a></li>
+          <li><a href="#">Holiday Batches</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">📞 Call Us</a></li>
+          <li><a href="#">💬 WhatsApp</a></li>
+          <li><a href="#">📧 Email Us</a></li>
+          <li><a href="#">📍 Get Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 One To One Education, Gaur City 2. All rights reserved.</span>
+      <span>Designed by <a href="#">OnlineLao</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919999000000" class="wa-btn" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Form submit mock
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    this.textContent = '✅ Request Sent! We\'ll call you within 2 hours.';
+    this.style.background = '#22c55e';
+    this.style.color = '#fff';
+  });
+</script>
+</body>
+</html>
